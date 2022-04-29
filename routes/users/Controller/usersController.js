@@ -62,7 +62,27 @@ const getUserClaimHistory = async (req, res) => {
   }
 };
 
+const getUserId = async (req, res) => {
+  try {
+    const { email } = req.params;
+
+    let foundUser = await User.find({ email: email });
+
+    if (foundUser.length <= 0) {
+      throw { message: "No User Matched." };
+    }
+
+    res.status(200).json({
+      message: "Retreived User ID.",
+      payload: foundUser[0].userId,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error", error: error.message });
+  }
+};
+
 module.exports = {
   userLogin,
   getUserClaimHistory,
+  getUserId,
 };

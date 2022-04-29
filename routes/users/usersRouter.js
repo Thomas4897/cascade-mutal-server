@@ -3,6 +3,7 @@ var router = express.Router();
 const {
   userLogin,
   getUserClaimHistory,
+  getUserId,
 } = require("./Controller/usersController");
 
 const { checkIsEmpty } = require("../../utils/index");
@@ -13,6 +14,8 @@ router.get("/", function (req, res, next) {
 });
 
 router.post("/login", checkIsEmpty, userLogin);
+
+router.get("/get-userId/:email", getUserId);
 
 router.get("/claim-history/:userId", getUserClaimHistory);
 
