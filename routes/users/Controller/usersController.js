@@ -23,12 +23,12 @@ const userLogin = async (req, res) => {
 
       res.status(200).json({
         message: "User Successfully Logged In.",
-        payload: savedUser.userId,
+        payload: savedUser,
       });
     } else {
       res.status(200).json({
         message: "User Successfully Logged In.",
-        payload: foundUser.userId,
+        payload: foundUser,
       });
     }
 
@@ -44,9 +44,6 @@ const userLogin = async (req, res) => {
 const getUserClaimHistory = async (req, res) => {
   try {
     const { userId } = req.params;
-    // const { userId } = req.body;
-    // console.log(userId);
-    // console.log(req.params);
 
     let allClaims = await Claim.find({ userId: userId });
 

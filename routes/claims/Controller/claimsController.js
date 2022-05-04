@@ -24,9 +24,11 @@ const createNewClaim = async (req, res) => {
 
     await foundUser.save();
 
+    const claimHistory = await Claim.find({ userId: userId });
+
     res.status(200).json({
       message: "Claim Successfully Created.",
-      payload: savedClaim,
+      payload: claimHistory,
     });
     // res.redirect("/login-form");
   } catch (error) {
